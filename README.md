@@ -43,7 +43,10 @@ Movie App api application encoded with NodeJS
                 <p><span style="font-family: Calibri, sans-serif;">POST</span></p>
             </td>
             <td style="border-bottom:2px solid #9cc2e5; border-left:none; border-right:2px solid #9cc2e5; border-top:none; vertical-align:top; width:180px;">
-                <p><span style="font-family: Calibri, sans-serif;">{&apos;title&apos;:&apos;foo&apos;, &apos;category&apos;:&apos;bar&apos;, &apos;country&apos;:France, year:1995, director:&quot;id&quot;, imdb_score: 8.4 }</span></p>
+                <p><span style="font-family: Calibri, sans-serif;">
+                    {    "title":"The Shawshank Redemption", "category":"Drama", "country":"US", "year":1994, "director_id":"60cf6158d53825d34c6c2e01", 
+                            "imdb_score": 9.3}
+                    </span></p>
             </td>
             <td style="border-bottom:2px solid #9cc2e5; border-left:none; border-right:2px solid #9cc2e5; border-top:none; vertical-align:top; width:151px;">
                 <p><span style="font-family: Calibri, sans-serif;">Create a new movie.</span></p>
