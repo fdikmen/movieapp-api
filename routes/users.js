@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcrypt')
+
+
 //Models
 const UserModel=require('../models/User')
 
@@ -13,13 +16,16 @@ router.get("/", function (req, res, next) {
 
 
 
-router.post('/register', (req, res) => {
-  const {username,password} = req.body;
-const newUser = new UserModel({username,password});
-newUser.save()
-         .then((data)=>{res.json(data)})
-         .catch((err)=>{res.json(err)})
+router.post("/register", (req, res) => {
+  const { username, password } = req.body;
 
+  bcrypt.hash(password, 10, function (err, hash) {
+    const newUser = new UserModel({ username, password:hash });
+    newUser
+      .save()
+      .then((data) => { res.json(data);})
+      .catch((err) => {res.json(err); });
+  });
 });
 
 module.exports = router;
