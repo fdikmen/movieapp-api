@@ -6,13 +6,18 @@ var logger = require('morgan');
 //db connect
 const db= require('./helpers/db')();
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
 var directorsRouter = require('./routes/directors');
 
 var app = express();
-
+//Config
+const config = require('./helpers/config')
+app.set('api_secret_key',config.api_secret_key)
+//Token Middleware
+const verifyToken = require('./middlewares/verify-token')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -25,8 +30,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/movies', moviesRouter);
-app.use('/api/directors', directorsRouter);
+app.use('/api/verify',verifyToken);
+app.use('/api/verify/movies', moviesRouter);
+app.use('/api/verify/directors', directorsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
